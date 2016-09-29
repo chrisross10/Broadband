@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Broadband", "Broadband\Broadband.csproj", "{1CF5C085-8DC5-4664-8CF2-52E28D6DB2E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Broadband.Tests", "Broadband.Tests\Broadband.Tests.csproj", "{24F44249-D6AF-431B-A0F3-9B3D5F8B570E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CF5C085-8DC5-4664-8CF2-52E28D6DB2E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CF5C085-8DC5-4664-8CF2-52E28D6DB2E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CF5C085-8DC5-4664-8CF2-52E28D6DB2E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CF5C085-8DC5-4664-8CF2-52E28D6DB2E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24F44249-D6AF-431B-A0F3-9B3D5F8B570E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24F44249-D6AF-431B-A0F3-9B3D5F8B570E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24F44249-D6AF-431B-A0F3-9B3D5F8B570E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24F44249-D6AF-431B-A0F3-9B3D5F8B570E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
