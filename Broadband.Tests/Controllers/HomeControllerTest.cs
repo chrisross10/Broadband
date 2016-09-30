@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Broadband.Controllers;
 using Broadband.Models;
@@ -12,13 +13,20 @@ namespace Broadband.Tests.Unit.Controllers
     public class HomeControllerTest
     {
         private HomeController _controller;
+        private Random _random;
+        private int _bundleId;
 
         [SetUp]
         public void SetUp()
         {
             var repository = Substitute.For<IBundleRepository>();
-            var bundles = new List<BundleList> { new BundleList() };
+
+            _random = new Random();
+            _bundleId = GetRandomId();
+            var bundleList = new BundleList { bundleId = _bundleId };
+            var bundles = new List<BundleList> { bundleList };
             repository.GetBundles().Returns(bundles);
+
             _controller = new HomeController(repository);
         }
 
@@ -33,7 +41,15 @@ namespace Broadband.Tests.Unit.Controllers
         public void It_gets_bundles()
         {
             var result = _controller.Index() as ViewResult;
-            Assert.That(result.Model, Is.Not.Null);
+            var bundle = (BundleList)result.Model;
+
+            Assert.That(bundle, Is.Not.Null);
+            Assert.That(bundle.bundleId, Is.EqualTo(_bundleId));
+        }
+
+        private int GetRandomId()
+        {
+            return _random.Next(1, 9999);
         }
     }
 }
