@@ -1,4 +1,5 @@
-﻿using Broadband.Persistence;
+﻿using System.Linq;
+using Broadband.Persistence;
 using NUnit.Framework;
 
 namespace Broadband.Tests.Integration
@@ -7,12 +8,12 @@ namespace Broadband.Tests.Integration
     public class PackageRepositoryTests
     {
         [Test]
-        public void It_gets_packages()
+        public void It_gets_bundles()
         {
-            var repository = new PackageRepository();
-            var packages = repository.GetPackages();
-
-            Assert.That(packages, Is.Not.Null);
+            var repository = new BundleRepository();
+            var bundles = repository.GetBundles().ToList();
+            Assert.That(bundles, Is.Not.Null);
+            Assert.That(bundles.Any());
         }
     }
 }
