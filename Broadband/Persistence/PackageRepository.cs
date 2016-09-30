@@ -5,9 +5,9 @@ namespace Broadband.Persistence
 {
     public class PackageRepository
     {
-        public IEnumerable<Package> GetPackages()
+        public IEnumerable<BundleList> GetPackages()
         {
-            return new List<Package>();
+            return new List<BundleList>();
         }
     }
 }

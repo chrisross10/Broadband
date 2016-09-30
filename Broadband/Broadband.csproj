@@ -205,7 +205,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Package.cs" />
+    <Compile Include="Models\Bundle.cs" />
+    <Compile Include="Models\BundleList.cs" />
+    <Compile Include="Models\CostBreakdown.cs" />
+    <Compile Include="Models\CostsWithLineRental.cs" />
+    <Compile Include="Models\CostsWithoutLineRental.cs" />
+    <Compile Include="Models\MonthlyCostBreakdown.cs" />
     <Compile Include="Persistence\PackageRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
