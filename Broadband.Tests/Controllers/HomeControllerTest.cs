@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Broadband;
+﻿using System.Web.Mvc;
 using Broadband.Controllers;
+using NUnit.Framework;
 
-namespace Broadband.Tests.Controllers
+namespace Broadband.Tests.Unit.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [Test]
         public void Index()
         {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
-
-            // Assert
-            Assert.IsNotNull(result);
+            var controller = new HomeController();
+            var result = controller.Index() as ViewResult;
+            Assert.That(result, Is.Not.Null);
         }
     }
 }
