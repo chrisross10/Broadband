@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Broadband.Tests.Integration
 {
     [TestFixture]
-    public class PackageRepositoryTests
+    public class BundleRepositoryTests
     {
         [Test]
         public void It_gets_bundles()
