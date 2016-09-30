@@ -6,7 +6,7 @@ using Broadband.Models;
 
 namespace Broadband.Persistence
 {
-    public class BundleRepository
+    public class BundleRepository: IBundleRepository
     {
         public IEnumerable<BundleList> GetBundles()
         {
@@ -20,5 +20,10 @@ namespace Broadband.Persistence
                 return bundle.bundleList;
             }
         }
+    }
+
+    public interface IBundleRepository
+    {
+        IEnumerable<BundleList> GetBundles();
     }
 }
