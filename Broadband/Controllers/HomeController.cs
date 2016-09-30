@@ -13,6 +13,11 @@ namespace Broadband.Controllers
             _repository = repository;
         }
 
+        public HomeController()
+        {
+            _repository = new BundleRepository();
+        }
+
         public ActionResult Index()
         {
             var bundle = _repository.GetBundles().First();
