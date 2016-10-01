@@ -19,6 +19,8 @@ namespace Broadband.Tests.Unit.Controllers
         private string _displaySpeed;
         private string _bundleType;
         private string _callsDisplay;
+        private string _monthlyCostDisplay;
+        private string _monthlyCostNote;
 
         [SetUp]
         public void SetUp()
@@ -30,13 +32,22 @@ namespace Broadband.Tests.Unit.Controllers
             _downloadLimitDisplay = GetRandomString();
             _displaySpeed = GetRandomString();
             _callsDisplay = GetRandomString();
+            _bundleType = GetRandomString();
+            _monthlyCostDisplay = GetRandomString();
+            _monthlyCostNote = GetRandomString();
+
             var bundleList = new BundleList
             {
                 bundleId = _bundleId,
                 downloadLimitDisplay = _downloadLimitDisplay,
                 displaySpeed = _displaySpeed,
                 bundleType = _bundleType,
-                callsDisplay = _callsDisplay
+                callsDisplay = _callsDisplay,
+                costsWithLineRental = new CostsWithLineRental
+                {
+                    monthlyCostDisplay = _monthlyCostDisplay,
+                    monthlyCostNote = _monthlyCostNote
+                }
             };
             var bundles = new List<BundleList> { bundleList };
             repository.GetBundles().Returns(bundles);
@@ -52,7 +63,7 @@ namespace Broadband.Tests.Unit.Controllers
         }
 
         [Test]
-        public void It_gets_bundles()
+        public void It_loads_bundles_into_the_view()
         {
             var result = _controller.Index() as ViewResult;
             var viewModel = (HomeViewModel)result.Model;
@@ -62,6 +73,8 @@ namespace Broadband.Tests.Unit.Controllers
             Assert.That(viewModel.DownloadSpeed, Is.EqualTo(_displaySpeed));
             Assert.That(viewModel.BundleType, Is.EqualTo(_bundleType));
             Assert.That(viewModel.CallsType, Is.EqualTo(_callsDisplay));
+            Assert.That(viewModel.MonthlyCost, Is.EqualTo(_monthlyCostDisplay));
+            Assert.That(viewModel.MonthlyCostNote, Is.EqualTo(_monthlyCostNote));
         }
 
         private int GetRandomInt()

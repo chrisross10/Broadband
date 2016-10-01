@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Broadband.Models;
 using Broadband.Persistence;
@@ -26,8 +27,10 @@ namespace Broadband.Controllers
             {
                 UsageType = bundle.downloadLimitDisplay,
                 DownloadSpeed = bundle.displaySpeed,
-                BundleType = bundle.bundleType,
-                CallsType = bundle.callsDisplay
+                BundleType = Regex.Replace(bundle.bundleType, "(\\B[A-Z])", " $1"),
+                CallsType = bundle.callsDisplay,
+                MonthlyCost = bundle.costsWithLineRental.monthlyCostDisplay,
+                MonthlyCostNote = bundle.costsWithLineRental.monthlyCostNote
             };
             return View(model);
         }

@@ -5,13 +5,34 @@
 }
 
 <div class="jumbotron">
-    <h1>My Broadband Package</h1>
-    <h2>@Html.DisplayFor(model => model.BundleType)</h2>
+    <div class="container">
+        <h1>My Products</h1>
+    </div>
 </div>
 
 <div class="row">
-    <p>Your current plan includes:</p>
-    <p>@Html.DisplayFor(model => model.UsageType) usage</p>
-    <p>Up to @Html.DisplayFor(model => model.DownloadSpeed)Mb download speed</p>
-    <p>@Html.DisplayFor(model => model.CallsType)</p>
+    <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            @Html.DisplayFor(model => model.BundleType)
+        </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-block">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>Your current plan includes:</p>
+                    <p>@Html.DisplayFor(model => model.UsageType) usage</p>
+                    <p>Up to @Html.DisplayFor(model => model.DownloadSpeed)Mb download speed</p>
+                    <p>@Html.DisplayFor(model => model.CallsType)</p>
+                </div>
+                <div class="col-md-4">
+                    <p></p>
+                    <p></p>
+                    <p>@Html.DisplayFor(model => model.MonthlyCost) per month</p>
+                    <p>@Html.DisplayFor(model => model.MonthlyCostNote)</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 </div>

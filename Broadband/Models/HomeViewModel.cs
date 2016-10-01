@@ -6,5 +6,7 @@
         public string UsageType { get; set; }
         public string DownloadSpeed { get; set; }
         public string BundleType { get; set; }
+        public string MonthlyCost { get; set; }
+        public string MonthlyCostNote { get; set; }
     }
 }
