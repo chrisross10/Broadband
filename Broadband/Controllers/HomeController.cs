@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Broadband.Models;
 using Broadband.Persistence;
 
 namespace Broadband.Controllers
@@ -21,7 +22,8 @@ namespace Broadband.Controllers
         public ActionResult Index()
         {
             var bundle = _repository.GetBundles().First();
-            return View(bundle);
+            var model = new HomeViewModel { UsageType = bundle.downloadLimitDisplay };
+            return View(model);
         }
     }
 }

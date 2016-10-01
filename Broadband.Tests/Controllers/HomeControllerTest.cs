@@ -15,6 +15,7 @@ namespace Broadband.Tests.Unit.Controllers
         private HomeController _controller;
         private Random _random;
         private int _bundleId;
+        private string _downloadLimitDisplay;
 
         [SetUp]
         public void SetUp()
@@ -23,7 +24,12 @@ namespace Broadband.Tests.Unit.Controllers
 
             _random = new Random();
             _bundleId = GetRandomId();
-            var bundleList = new BundleList { bundleId = _bundleId };
+            _downloadLimitDisplay = GetRandomString();
+            var bundleList = new BundleList
+            {
+                bundleId = _bundleId,
+                downloadLimitDisplay = _downloadLimitDisplay
+            };
             var bundles = new List<BundleList> { bundleList };
             repository.GetBundles().Returns(bundles);
 
@@ -41,15 +47,20 @@ namespace Broadband.Tests.Unit.Controllers
         public void It_gets_bundles()
         {
             var result = _controller.Index() as ViewResult;
-            var bundle = (BundleList)result.Model;
+            var viewModel = (HomeViewModel)result.Model;
 
-            Assert.That(bundle, Is.Not.Null);
-            Assert.That(bundle.bundleId, Is.EqualTo(_bundleId));
+            Assert.That(viewModel, Is.Not.Null);
+            Assert.That(viewModel.UsageType, Is.EqualTo(_downloadLimitDisplay + " usage"));
         }
 
         private int GetRandomId()
         {
             return _random.Next(1, 9999);
+        }
+
+        private string GetRandomString()
+        {
+            return Guid.NewGuid().ToString();
         }
     }
 }
