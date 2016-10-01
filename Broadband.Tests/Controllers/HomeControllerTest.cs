@@ -50,7 +50,7 @@ namespace Broadband.Tests.Unit.Controllers
             var viewModel = (HomeViewModel)result.Model;
 
             Assert.That(viewModel, Is.Not.Null);
-            Assert.That(viewModel.UsageType, Is.EqualTo(_downloadLimitDisplay + " usage"));
+            Assert.That(viewModel.UsageType, Is.EqualTo(_downloadLimitDisplay));
         }
 
         private int GetRandomId()
