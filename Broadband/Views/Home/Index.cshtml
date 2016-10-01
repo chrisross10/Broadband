@@ -10,15 +10,18 @@
     </div>
 </div>
 
-<div class="row">
-    <p>
-        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            @Html.DisplayFor(model => model.BundleType)
-        </a>
-    </p>
-    <div class="collapse" id="collapseExample">
-        <div class="card card-block">
-            <div class="row">
+
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    @Html.DisplayFor(model => model.BundleType)
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
                 <div class="col-md-8">
                     <p>Your current plan includes:</p>
                     <p>@Html.DisplayFor(model => model.UsageType) usage</p>
@@ -32,7 +35,6 @@
                     <p>@Html.DisplayFor(model => model.MonthlyCostNote)</p>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>
