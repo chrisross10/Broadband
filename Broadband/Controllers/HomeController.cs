@@ -25,7 +25,8 @@ namespace Broadband.Controllers
             var model = new HomeViewModel
             {
                 UsageType = bundle.downloadLimitDisplay,
-                DownloadSpeed = bundle.displaySpeed
+                DownloadSpeed = bundle.displaySpeed,
+                BundleType = bundle.bundleType
             };
             return View(model);
         }

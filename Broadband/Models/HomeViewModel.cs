@@ -4,5 +4,6 @@
     {
         public string UsageType { get; set; }
         public string DownloadSpeed { get; set; }
+        public string BundleType { get; set; }
     }
 }
