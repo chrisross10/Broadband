@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Broadband.Models;
@@ -22,16 +23,21 @@ namespace Broadband.Controllers
 
         public ActionResult Index()
         {
-            var bundle = _repository.GetBundles().First();
-            var model = new HomeViewModel
+            var bundles = _repository.GetBundles();
+            var model = new List<HomeViewModel>();
+            foreach (var b in bundles)
             {
-                UsageType = bundle.downloadLimitDisplay,
-                DownloadSpeed = bundle.displaySpeed,
-                BundleType = Regex.Replace(bundle.bundleType, "(\\B[A-Z])", " $1"),
-                CallsType = bundle.callsDisplay,
-                MonthlyCost = bundle.costsWithLineRental.monthlyCostDisplay,
-                MonthlyCostNote = bundle.costsWithLineRental.monthlyCostNote
-            };
+                model.Add(new HomeViewModel
+                {
+                    UsageType = b.downloadLimitDisplay,
+                    DownloadSpeed = b.displaySpeed,
+                    BundleType = Regex.Replace(b.bundleType, "(\\B[A-Z])", " $1"),
+                    CallsType = b.callsDisplay,
+                    MonthlyCost = b.costsWithLineRental.monthlyCostDisplay,
+                    MonthlyCostNote = b.costsWithLineRental.monthlyCostNote,
+                    Id = b.bundleId
+                });
+            }
             return View(model);
         }
     }

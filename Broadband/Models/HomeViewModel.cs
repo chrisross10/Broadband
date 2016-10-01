@@ -8,5 +8,6 @@
         public string BundleType { get; set; }
         public string MonthlyCost { get; set; }
         public string MonthlyCostNote { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Broadband.Controllers;
 using Broadband.Models;
@@ -66,15 +67,16 @@ namespace Broadband.Tests.Unit.Controllers
         public void It_loads_bundles_into_the_view()
         {
             var result = _controller.Index() as ViewResult;
-            var viewModel = (HomeViewModel)result.Model;
+            var viewModel = (List<HomeViewModel>)result.Model;
 
             Assert.That(viewModel, Is.Not.Null);
-            Assert.That(viewModel.UsageType, Is.EqualTo(_downloadLimitDisplay));
-            Assert.That(viewModel.DownloadSpeed, Is.EqualTo(_displaySpeed));
-            Assert.That(viewModel.BundleType, Is.EqualTo(_bundleType));
-            Assert.That(viewModel.CallsType, Is.EqualTo(_callsDisplay));
-            Assert.That(viewModel.MonthlyCost, Is.EqualTo(_monthlyCostDisplay));
-            Assert.That(viewModel.MonthlyCostNote, Is.EqualTo(_monthlyCostNote));
+            Assert.That(viewModel.First().UsageType, Is.EqualTo(_downloadLimitDisplay));
+            Assert.That(viewModel.First().DownloadSpeed, Is.EqualTo(_displaySpeed));
+            Assert.That(viewModel.First().BundleType, Is.EqualTo(_bundleType));
+            Assert.That(viewModel.First().CallsType, Is.EqualTo(_callsDisplay));
+            Assert.That(viewModel.First().MonthlyCost, Is.EqualTo(_monthlyCostDisplay));
+            Assert.That(viewModel.First().MonthlyCostNote, Is.EqualTo(_monthlyCostNote));
+            Assert.That(viewModel.First().Id, Is.EqualTo(_bundleId));
         }
 
         private int GetRandomInt()

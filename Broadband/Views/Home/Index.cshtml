@@ -1,4 +1,4 @@
-﻿@model Broadband.Models.HomeViewModel
+﻿@model List<Broadband.Models.HomeViewModel>
 
 @{
     ViewBag.Title = "Home Page";
@@ -6,35 +6,38 @@
 
 <div class="jumbotron">
     <div class="container">
-        <h1>My Package</h1>
+        <h1>My Packages</h1>
     </div>
 </div>
 
 
 <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                    @Html.DisplayFor(model => model.BundleType)
-                </a>
-            </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="col-md-8">
-                    <p>Your current plan includes:</p>
-                    <p>@Html.DisplayFor(model => model.UsageType) usage</p>
-                    <p>Up to @Html.DisplayFor(model => model.DownloadSpeed)Mb download speed</p>
-                    <p>@Html.DisplayFor(model => model.CallsType)</p>
-                </div>
-                <div class="col-md-4">
-                    <p></p>
-                    <p></p>
-                    <p>@Html.DisplayFor(model => model.MonthlyCost) per month</p>
-                    <p>@Html.DisplayFor(model => model.MonthlyCostNote)</p>
+    @foreach (var bundle in Model)
+    {
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#@bundle.Id">
+                        @Html.DisplayFor(m => bundle.BundleType)
+                    </a>
+                </h4>
+            </div>
+            <div id="@bundle.Id" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="col-md-8">
+                        <p>Your current plan includes:</p>
+                        <p>@Html.DisplayFor(m => bundle.UsageType) usage</p>
+                        <p>Up to @Html.DisplayFor(m => bundle.DownloadSpeed)Mb download speed</p>
+                        <p>@Html.DisplayFor(m => bundle.CallsType)</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p></p>
+                        <p></p>
+                        <p>@Html.DisplayFor(m => bundle.MonthlyCost) per month</p>
+                        <p>@Html.DisplayFor(m => bundle.MonthlyCostNote)</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 </div>
