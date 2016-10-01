@@ -22,7 +22,11 @@ namespace Broadband.Controllers
         public ActionResult Index()
         {
             var bundle = _repository.GetBundles().First();
-            var model = new HomeViewModel { UsageType = bundle.downloadLimitDisplay };
+            var model = new HomeViewModel
+            {
+                UsageType = bundle.downloadLimitDisplay,
+                DownloadSpeed = bundle.displaySpeed
+            };
             return View(model);
         }
     }

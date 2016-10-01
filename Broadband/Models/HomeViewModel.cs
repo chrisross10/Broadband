@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Broadband.Models
+﻿namespace Broadband.Models
 {
     public class HomeViewModel
     {
         public string UsageType { get; set; }
+        public string DownloadSpeed { get; set; }
     }
 }
