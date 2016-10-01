@@ -18,6 +18,7 @@ namespace Broadband.Tests.Unit.Controllers
         private string _downloadLimitDisplay;
         private string _displaySpeed;
         private string _bundleType;
+        private string _callsDisplay;
 
         [SetUp]
         public void SetUp()
@@ -28,12 +29,14 @@ namespace Broadband.Tests.Unit.Controllers
             _bundleId = GetRandomInt();
             _downloadLimitDisplay = GetRandomString();
             _displaySpeed = GetRandomString();
+            _callsDisplay = GetRandomString();
             var bundleList = new BundleList
             {
                 bundleId = _bundleId,
                 downloadLimitDisplay = _downloadLimitDisplay,
                 displaySpeed = _displaySpeed,
-                bundleType = _bundleType
+                bundleType = _bundleType,
+                callsDisplay = _callsDisplay
             };
             var bundles = new List<BundleList> { bundleList };
             repository.GetBundles().Returns(bundles);
@@ -58,6 +61,7 @@ namespace Broadband.Tests.Unit.Controllers
             Assert.That(viewModel.UsageType, Is.EqualTo(_downloadLimitDisplay));
             Assert.That(viewModel.DownloadSpeed, Is.EqualTo(_displaySpeed));
             Assert.That(viewModel.BundleType, Is.EqualTo(_bundleType));
+            Assert.That(viewModel.CallsType, Is.EqualTo(_callsDisplay));
         }
 
         private int GetRandomInt()

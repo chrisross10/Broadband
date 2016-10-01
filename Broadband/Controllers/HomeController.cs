@@ -26,7 +26,8 @@ namespace Broadband.Controllers
             {
                 UsageType = bundle.downloadLimitDisplay,
                 DownloadSpeed = bundle.displaySpeed,
-                BundleType = bundle.bundleType
+                BundleType = bundle.bundleType,
+                CallsType = bundle.callsDisplay
             };
             return View(model);
         }
