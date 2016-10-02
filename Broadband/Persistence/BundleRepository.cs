@@ -6,24 +6,30 @@ using Broadband.Models;
 
 namespace Broadband.Persistence
 {
-    public class BundleRepository: IBundleRepository
+    public interface IBundleRepository
     {
-        public IEnumerable<BundleList> GetBundles()
+        IEnumerable<BundleList> GetBundles(ApiConnection apiConnection);
+    }
+
+    public class BundleRepository : IBundleRepository
+    {
+        public IEnumerable<BundleList> GetBundles(ApiConnection apiConnection)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://api.broadbandchoices.co.uk/");
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var response = client.GetAsync("api/v2/bestbuys?Authorization=eb45afb3-a7c2-4d6d-a62a-bb9a29a4fb2e").Result;
+                client.BaseAddress = apiConnection.BaseAddress;
+                client.DefaultRequestHeaders.Accept.Add(apiConnection.MediaType);
+                var response = client.GetAsync(apiConnection.Endpoint).Result;
                 var bundle = response.Content.ReadAsAsync<Bundle>().Result;
                 return bundle.bundleList;
             }
         }
     }
 
-    public interface IBundleRepository
+    public class ApiConnection
     {
-        IEnumerable<BundleList> GetBundles();
+        public Uri BaseAddress { get; set; }
+        public MediaTypeWithQualityHeaderValue MediaType { get; set; }
+        public string Endpoint { get; set; }
     }
 }

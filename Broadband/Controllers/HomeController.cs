@@ -23,7 +23,7 @@ namespace Broadband.Controllers
 
         public ActionResult Index()
         {
-            var bundles = _repository.GetBundles();
+            var bundles = _repository.GetBundles(new ApiConnection());
             var model = new List<HomeViewModel>();
             foreach (var b in bundles)
             {

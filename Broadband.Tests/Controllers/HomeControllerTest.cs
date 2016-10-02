@@ -28,14 +28,7 @@ namespace Broadband.Tests.Unit.Controllers
         {
             var repository = Substitute.For<IBundleRepository>();
 
-            _random = new Random();
-            _bundleId = GetRandomInt();
-            _downloadLimitDisplay = GetRandomString();
-            _displaySpeed = GetRandomString();
-            _callsDisplay = GetRandomString();
-            _bundleType = GetRandomString();
-            _monthlyCostDisplay = GetRandomString();
-            _monthlyCostNote = GetRandomString();
+            SetUpVariables();
 
             var bundleList = new BundleList
             {
@@ -51,7 +44,7 @@ namespace Broadband.Tests.Unit.Controllers
                 }
             };
             var bundles = new List<BundleList> { bundleList };
-            repository.GetBundles().Returns(bundles);
+            repository.GetBundles(Arg.Any<ApiConnection>()).Returns(bundles);
 
             _controller = new HomeController(repository);
         }
@@ -87,6 +80,18 @@ namespace Broadband.Tests.Unit.Controllers
         private string GetRandomString()
         {
             return Guid.NewGuid().ToString();
+        }
+
+        private void SetUpVariables()
+        {
+            _random = new Random();
+            _bundleId = GetRandomInt();
+            _downloadLimitDisplay = GetRandomString();
+            _displaySpeed = GetRandomString();
+            _callsDisplay = GetRandomString();
+            _bundleType = GetRandomString();
+            _monthlyCostDisplay = GetRandomString();
+            _monthlyCostNote = GetRandomString();
         }
     }
 }
