@@ -217,6 +217,7 @@
     <Compile Include="Models\MonthlyCostBreakdown.cs" />
     <Compile Include="Persistence\BundleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ModelFactory.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

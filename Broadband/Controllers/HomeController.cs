@@ -1,43 +1,27 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Linq;
 using System.Web.Mvc;
-using Broadband.Models;
 using Broadband.Persistence;
+using Broadband.Services;
 
 namespace Broadband.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IBundleRepository _repository;
+        private readonly IModelFactory _factory;
 
-        public HomeController(IBundleRepository repository)
+        public HomeController(IModelFactory factory)
         {
-            _repository = repository;
+            _factory = factory;
         }
 
         public HomeController()
         {
-            _repository = new BundleRepository();
+            _factory = new ModelFactory(new BundleRepository());
         }
 
         public ActionResult Index()
         {
-            var bundles = _repository.GetBundles(new ApiConnection());
-            var model = new List<HomeViewModel>();
-            foreach (var b in bundles)
-            {
-                model.Add(new HomeViewModel
-                {
-                    UsageType = b.downloadLimitDisplay,
-                    DownloadSpeed = b.displaySpeed,
-                    BundleType = Regex.Replace(b.bundleType, "(\\B[A-Z])", " $1"),
-                    CallsType = b.callsDisplay,
-                    MonthlyCost = b.costsWithLineRental.monthlyCostDisplay,
-                    MonthlyCostNote = b.costsWithLineRental.monthlyCostNote,
-                    Id = b.bundleId
-                });
-            }
+            var model = _factory.CreateModel().ToList();
             return View(model);
         }
     }
