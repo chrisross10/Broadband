@@ -7,7 +7,7 @@ using Broadband.Services;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Broadband.Tests.Unit.Controllers
+namespace Broadband.Tests.Unit.Services
 {
     [TestFixture]
     public class ModelFactoryTests
@@ -50,7 +50,7 @@ namespace Broadband.Tests.Unit.Controllers
                 }
             };
             var bundles = new List<BundleList> { bundleList };
-            repository.GetBundles(Arg.Any<ApiConnection>()).Returns(bundles);
+            repository.GetBundles().Returns(bundles);
 
             _factory = new ModelFactory(repository);
         }

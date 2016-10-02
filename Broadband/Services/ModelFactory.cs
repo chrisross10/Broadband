@@ -10,7 +10,7 @@ namespace Broadband.Services
         IEnumerable<HomeViewModel> CreateModel();
     }
 
-    public class ModelFactory:IModelFactory
+    public class ModelFactory : IModelFactory
     {
         private readonly IBundleRepository _repository;
 
@@ -21,7 +21,7 @@ namespace Broadband.Services
 
         public IEnumerable<HomeViewModel> CreateModel()
         {
-            var bundles = _repository.GetBundles(new ApiConnection());
+            var bundles = _repository.GetBundles();
             var model = new List<HomeViewModel>();
             foreach (var b in bundles)
             {

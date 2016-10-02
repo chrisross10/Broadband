@@ -8,13 +8,14 @@ namespace Broadband.Persistence
 {
     public interface IBundleRepository
     {
-        IEnumerable<BundleList> GetBundles(ApiConnection apiConnection);
+        IEnumerable<BundleList> GetBundles();
     }
 
     public class BundleRepository : IBundleRepository
     {
-        public IEnumerable<BundleList> GetBundles(ApiConnection apiConnection)
+        public IEnumerable<BundleList> GetBundles()
         {
+            var apiConnection = CreateConnection();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = apiConnection.BaseAddress;
@@ -24,12 +25,15 @@ namespace Broadband.Persistence
                 return bundle.bundleList;
             }
         }
-    }
 
-    public class ApiConnection
-    {
-        public Uri BaseAddress { get; set; }
-        public MediaTypeWithQualityHeaderValue MediaType { get; set; }
-        public string Endpoint { get; set; }
+        private ApiConnection CreateConnection()
+        {
+            return new ApiConnection
+            {
+                BaseAddress = new Uri("http://api.broadbandchoices.co.uk/"),
+                Endpoint = "api/v2/bestbuys?Authorization=eb45afb3-a7c2-4d6d-a62a-bb9a29a4fb2e",
+                MediaType = new MediaTypeWithQualityHeaderValue("application/json")
+            };
+        }
     }
 }
